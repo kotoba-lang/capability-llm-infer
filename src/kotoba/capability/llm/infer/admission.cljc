@@ -68,7 +68,7 @@
 
   Collapsing them into `denied` would leave the caller with one word for eight
   situations that are fixed by editing eight different things."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def schema "kotoba.capability.llm.infer.admission.v1")
 
@@ -92,7 +92,7 @@
   (try
     (let [m (re-find #"^([a-zA-Z][a-zA-Z0-9+.-]*)://([^/?#]+)" (str url))]
       (when m
-        (let [scheme (str/lower-case (nth m 1))
+        (let [scheme (str/lower (nth m 1))
               authority (nth m 2)
               hostport (if-let [i (str/last-index-of authority "@")]
                          (subs authority (inc i))
@@ -100,7 +100,7 @@
               host (if (str/starts-with? hostport "[")
                      (subs hostport 0 (inc (or (str/index-of hostport "]") 0)))
                      (first (str/split hostport #":")))]
-          {:scheme scheme :host (str/lower-case (str host))})))
+          {:scheme scheme :host (str/lower (str host))})))
     (catch #?(:clj Exception :cljs :default) _ nil)))
 
 (defn- missing-allowlists [policy]
