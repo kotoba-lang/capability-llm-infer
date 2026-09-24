@@ -55,12 +55,11 @@
   exit codes and says why: \"'The server said no' is a measurement; 'nothing was
   listening' is not, and an operator sent to read a refusal that never happened
   debugs the wrong thing\" (ADR-2608136000)."
-  (:require [kotoba.capability.llm.infer.admission :as admission])
+  (:require [kotoba.bytes :as kbytes] [kotoba.capability.llm.infer.admission :as admission])
   (:import [java.net URI]
            [java.net.http HttpClient HttpClient$Redirect HttpRequest
                           HttpRequest$Builder HttpRequest$BodyPublishers
                           HttpResponse$BodyHandlers]
-           [java.nio.charset StandardCharsets]
            [java.time Duration]))
 
 (def code-refused -1)
@@ -84,7 +83,7 @@
       (.build)))
 
 (defn- utf8-bytes ^bytes [s]
-  (.getBytes (str s) StandardCharsets/UTF_8))
+  (kbytes/utf8-bytes (str s)))
 
 (defn- resolve-endpoint
   "Where `model` is served, per the embedder. nil when nobody says."
