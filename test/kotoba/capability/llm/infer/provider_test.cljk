@@ -35,7 +35,7 @@
 (deftest a-provider-with-no-resolver-and-no-endpoint-attempts-nothing
   ;; There is no default endpoint on purpose: baking the workspace's alias host
   ;; in here would make a network READ from a capability granted a network
-  ;; WRITE, and freeze a value CLAUDE.md says not to freeze.
+  ;; WRITE, and freeze a value AGENTS.md says not to freeze.
   (let [r ((:infer (provider/provider (dissoc p :endpoints)))
            "murakumo-main" "hello")]
     (is (= :infer/endpoint-unresolved (:reason r)))
