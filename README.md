@@ -67,7 +67,7 @@ endpoint belongs is refused as unparsable, not resolved.
 belongs to `http/fetch` — a different definition CID and therefore a different
 grant. There is no default resolver and no default endpoint: baking the alias
 host in would make a network read from inside a capability granted a network
-write, and freeze a value CLAUDE.md says repeatedly not to freeze.
+write, and freeze a value AGENTS.md says repeatedly not to freeze.
 
 A corollary that the tests pin: **a model outside `:allow-models` never reaches
 the resolver.** Otherwise a guest could drive the host into performing network

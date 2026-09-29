@@ -29,9 +29,9 @@
   another — the redirect hazard, in a different coat.
 
   There is no default resolver, and that is deliberate. The workspace SSoT is
-  the `murakumo-main` alias (CLAUDE.md), but baking that host here would (a)
+  the `murakumo-main` alias (AGENTS.md), but baking that host here would (a)
   make a network read from inside a capability that was granted a network
-  write, and (b) freeze a value CLAUDE.md says repeatedly not to freeze. With
+  write, and (b) freeze a value AGENTS.md says repeatedly not to freeze. With
   no resolver and no explicit endpoint, every call refuses with
   `:infer/endpoint-unresolved` — one fact, one message, nothing attempted.
 
